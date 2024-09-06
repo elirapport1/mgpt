@@ -1,0 +1,6 @@
+PyMuPDF
+vecs
+openai
+fastapi
+pydantic
+uvicorn

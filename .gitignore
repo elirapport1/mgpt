@@ -1,0 +1,18 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore environment directories
+env/
+iwq/
+riflecarbine/
+supabase/
+.vscode/
+
+
+# Ignore specific files
+secret_config.json
+iwq.pdf
+riflecarbine.pdf
+.env
+todo.txt
