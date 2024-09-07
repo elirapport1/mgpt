@@ -4,3 +4,4 @@ openai
 fastapi
 pydantic
 uvicorn
+dotenv
