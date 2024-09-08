@@ -11,6 +11,7 @@ client = OpenAI()
 script_dir = os.path.dirname(__file__)
 # load_dotenv()
 # DB_CONNECTION = os.getenv("DB_CONNECTION")
+DB_CONNECTION = os.environ.get('DB_CONNECTION') #to import variable from render venv
 
 
 
