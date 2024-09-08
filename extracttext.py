@@ -4,13 +4,13 @@ from openai import OpenAI
 import vecs
 import json
 import base64
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import logging
 
 client = OpenAI()
 script_dir = os.path.dirname(__file__)
-load_dotenv()
-DB_CONNECTION = os.getenv("DB_CONNECTION")
+# load_dotenv()
+# DB_CONNECTION = os.getenv("DB_CONNECTION")
 
 
 
