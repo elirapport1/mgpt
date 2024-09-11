@@ -91,7 +91,7 @@ def describe_image(base_64_image):
         ],
         }
     ],
-    max_tokens=600,
+    max_tokens=500,
     )
 
     return response.choices[0].message.content
