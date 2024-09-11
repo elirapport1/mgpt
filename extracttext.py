@@ -182,7 +182,7 @@ def generate_response(query, relevant_pages):
     - str: The generated response from the OpenAI API.
     """
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful assistant who can answer a military training question based only on the provided text."},
             {"role": "user", "content": "here is the user's question that you need to answer: "+query+" And here are the relevant pages of the manual you need to read and pull from to answer the question - make sure to include the page numbers of all the pages given: "+relevant_pages}
@@ -192,7 +192,7 @@ def generate_response(query, relevant_pages):
     return response.choices[0].message.content
 
 
-
+# print(generate_response("what do I do if my gun jams?", query_similar_pages("what do I do if my gun jams?")))
 
 # To process the pdfs and initialize the vector DB in supabase uncomment below:
 # riflecarbine_path = os.path.join(script_dir, "riflecarbine.pdf")
