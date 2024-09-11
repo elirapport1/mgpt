@@ -47,6 +47,7 @@ send charging handle forward.
  
  
 
+
 page: 148, manual name: riflecarbine
 Chapter 8 
 8-10
@@ -94,62 +95,43 @@ eliminated, deliberately check the weapon when in a covered location for any
 potential issues or contributing factors that caused the malfunction and
 correct them.
 
-page: 147, manual name: riflecarbine
-Control 
-13 May 2016 
-TC 3-22.9 
-8-9 
-8-31. Immediate action can correct rudimentary failures during the cycle of function: 
- 
-Failure to fire – is when a round is locked into the chamber, the weapon is 
-ready to fire, the select switch is placed on SEMI or BURST / AUTO, and 
-the trigger is squeezed, the hammer falls (audible click), and the weapon does 
-not fire. 
- 
-Failure to feed – is when the bolt carrier assembly is expected to move return 
-back into battery but is prevented from moving all the way forward. A clear 
-gap can be seen between the bolt carrier assembly and the forward edge of 
-the ejection port. This failure may cause a stove pipe or a double feed (see 
-below). 
- 
-Failure to chamber – when the round is being fed into the chamber, but the 
-bolt carrier assembly does not fully seat forward, failing to chamber the round 
-and lock the bolt locking lugs with the barrel extension’s corresponding lugs. 
- 
-Failure to extract – when either automatically or manually, the extractor 
-loses its grip on the cartridge case or the bolt seizes movement rearward 
-during extraction that leaves the cartridge case partially removed or fully 
-seated. 
- 
-Failure to eject – occurs when, either automatically or manually, a cartridge 
-case is extracted from the chamber fully, but does not leave the upper receiver 
-through the ejection port. 
-8-32. Remedial action requires the Soldier to quickly identify one of four issues and 
-apply a specific technique to correct the malfunction. Remedial action is required to 
-correct the following types of malfunctions or symptoms: 
- 
-Immediate action fails to correct symptom – when a malfunction occurred 
-that initiated the Soldier to execute immediate action and multiple attempts 
-failed to correct the malfunction. A minimum of two cycles of immediate 
-action should have been completed; first, without a magazine change, and the 
-second with a magazine change. 
- 
-Stove pipe – can occur when either a feeding cartridge or an expended 
-cartridge case is pushed sideways during the cycle of function causing that 
-casing to stop the forward movement of the bolt carrier assembly and lodge 
-itself between the face of the bolt and the ejection port.  
- 
-Double feed – occurs when a round is chambered and not fired and a 
-subsequent round is being fed without the chamber being clear. 
- 
-Bolt override – is when the bolt fails to push a new cartridge out of the 
-magazine during feeding or chambering, causing the bolt to ride on top of the 
-cartridge. 
- 
-Charging handle impingement – when a round becomes stuck between the 
-bolt assembly and the charging handle where the charging handle is not in 
-the forward, locked position.  
-8-33. Although there are other types of malfunctions or disruptions to the cycle of 
-function, those listed above are the most common. Any other malfunction will require 
-additional time to determine the true point of failure and an appropriate remedy. 
 
+page: 150, manual name: riflecarbine
+Chapter 8 
+8-12 
+TC 3-22.9, C2 
+31 August 2017 
+CORRECTING MALFUNCTIONS 
+8-38. Figure 8-4 below provides a simple mental flow chart to rapidly overcome 
+malfunctions experienced during the shot process. 
+  
+Figure 8-4. Malfunction corrective action flow chart 
+ 
+ 
+ 
+
+
+[Image page_150_image_1.jpeg]: 
+ The diagram outlines procedures following a malfunction in a firearm, specifically addressing situations where there is no bang when the trigger is pulled.
+
+1. **Initial Condition**:
+   - **NO BANG**
+   - Two paths are indicated based on conditions following a "click".
+
+2. **If CLICK**:
+   - Yes leads to **Perform Immediate Action**
+     - Proceed to **Tap Rack Reassess**.
+     - End with **Ready**.
+
+3. **If MUSH**:
+   - No leads to **Perform Remedial Action**
+     - Next step: **Look / Identify**.
+     - Followed by **Reduce**.
+       - Four potential issues to identify:
+         - **Stove Pipe**
+         - **Double Feed**
+         - **Bolt Override**
+         - **Charging Handle Impingement**
+     - Concludes with **Ready**.
+
+The flowchart emphasizes immediate and remedial actions to ensure continued readiness of the firearm in the event of a malfunction.

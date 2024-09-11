@@ -4,13 +4,14 @@ from openai import OpenAI
 import vecs
 import json
 import base64
-# from dotenv import load_dotenv
+# from dotenv import load_dotenv # for local dev
 import logging
+import time
 
 client = OpenAI()
 script_dir = os.path.dirname(__file__)
-# load_dotenv()
-# DB_CONNECTION = os.getenv("DB_CONNECTION")
+# load_dotenv() # for local dev
+# DB_CONNECTION = os.getenv("DB_CONNECTION") # for local dev
 DB_CONNECTION = os.environ.get('DB_CONNECTION') #to import variable from render venv
 
 
@@ -127,77 +128,6 @@ def generate_and_store_embeddings_from_texts(pages_text):
         pages.create_index()
 
 
-# def query_similar_pages(query_input, limit=3):
-#     """
-#     Queries the vector database for the most similar pages to the given input query.
-
-#     Args:
-#     - query_input (str): The input query to find similar pages for.
-#     - limit (int, optional): The maximum number of similar pages to return. Default is 3.
-
-#     Returns:
-#     - str: A string containing the text of the most similar pages.
-
-#     Effect:
-#     - Generates an embedding for the input query using the OpenAI API.
-#     - Queries the vector database for the most similar pages based on the query embedding.
-#     - Combines the text of the most similar pages into a single string.
-#     - Writes the combined text of the most similar pages to a file named "query_results.txt".
-#     """
-#     response = client.embeddings.create(
-#         model="text-embedding-ada-002",
-#         input=[query_input]
-#     )
-#     query_embedding = response.data[0].embedding
-
-#     vx = vecs.Client(DB_CONNECTION)
-#     pages = vx.get_or_create_collection(name="combined_manuals", dimension=1536)
-#     # query the collection for the most similar page
-#     results = pages.query(
-#         data=query_embedding,
-#         limit=limit,
-#         include_value=True
-#     )
-#     combined_relevant_pages = ""
-#     json_file_path = os.path.join(script_dir, "pages_text_array.json")
-#     with open(json_file_path, "r", encoding="utf-8") as json_file:
-#         combined_pages_text = json.load(json_file)
-#     for i in range(limit):
-#         combined_relevant_pages += combined_pages_text[int(results[i][0])] + "\n"
-
-#     output_file_path = os.path.join(script_dir, "query_results.txt")
-#     with open(output_file_path, "w", encoding="utf-8") as output_file:
-#         output_file.write(combined_relevant_pages)
-#     return combined_relevant_pages
-
-# def generate_response(query, relevant_pages):
-#     """
-#     Generate a response based on the relevant pages using the OpenAI API.
-
-#     Args:
-#     - relevant_pages (str): A string containing the text of the relevant pages.
-
-#     Returns:
-#     - str: The generated response from the OpenAI API.
-#     """
-#     response = client.chat.completions.create(
-#         model="gpt-4",
-#         messages=[
-#             {"role": "system", "content": "You are a helpful assistant who can answer a military training question based only on the provided text."},
-#             {"role": "user", "content": "here is the user's question that you need to answer: "+query+" And here are the relevant pages of the manual you need to read and pull from to answer the question - make sure to include the page numbers of all the pages given: "+relevant_pages}
-#         ]
-#     )
-#     # return response.choices[0].message['content']
-#     return response.choices[0].message.content
-
-
-
-
-
-
-# Initialize logging
-logging.basicConfig(level=logging.INFO)
-
 def query_similar_pages(query_input, limit=3):
     """
     Queries the vector database for the most similar pages to the given input query.
@@ -215,35 +145,31 @@ def query_similar_pages(query_input, limit=3):
     - Combines the text of the most similar pages into a single string.
     - Writes the combined text of the most similar pages to a file named "query_results.txt".
     """
-    try:
-        response = client.embeddings.create(
-            model="text-embedding-ada-002",
-            input=[query_input]
-        )
-        query_embedding = response.data[0].embedding
+    response = client.embeddings.create(
+        model="text-embedding-ada-002",
+        input=[query_input]
+    )
+    query_embedding = response.data[0].embedding
 
-        vx = vecs.Client(DB_CONNECTION)
-        pages = vx.get_or_create_collection(name="combined_manuals", dimension=1536)
-        # query the collection for the most similar page
-        results = pages.query(
-            data=query_embedding,
-            limit=limit,
-            include_value=True
-        )
-        combined_relevant_pages = ""
-        json_file_path = os.path.join(script_dir, "pages_text_array.json")
-        with open(json_file_path, "r", encoding="utf-8") as json_file:
-            combined_pages_text = json.load(json_file)
-        for i in range(limit):
-            combined_relevant_pages += combined_pages_text[int(results[i][0])] + "\n"
+    vx = vecs.Client(DB_CONNECTION)
+    pages = vx.get_or_create_collection(name="combined_manuals", dimension=1536)
+    # query the collection for the most similar page
+    results = pages.query(
+        data=query_embedding,
+        limit=limit,
+        include_value=True
+    )
+    combined_relevant_pages = ""
+    json_file_path = os.path.join(script_dir, "pages_text_array.json")
+    with open(json_file_path, "r", encoding="utf-8") as json_file:
+        combined_pages_text = json.load(json_file)
+    for i in range(limit):
+        combined_relevant_pages += combined_pages_text[int(results[i][0])] + "\n"
 
-        output_file_path = os.path.join(script_dir, "query_results.txt")
-        with open(output_file_path, "w", encoding="utf-8") as output_file:
-            output_file.write(combined_relevant_pages)
-        return combined_relevant_pages
-    except Exception as e:
-        logging.error(f"Error querying similar pages: {e}")
-        return ""
+    output_file_path = os.path.join(script_dir, "query_results.txt")
+    with open(output_file_path, "w", encoding="utf-8") as output_file:
+        output_file.write(combined_relevant_pages)
+    return combined_relevant_pages
 
 def generate_response(query, relevant_pages):
     """
@@ -255,20 +181,15 @@ def generate_response(query, relevant_pages):
     Returns:
     - str: The generated response from the OpenAI API.
     """
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant who can answer a military training question based only on the provided text."},
-                {"role": "user", "content": "here is the user's question that you need to answer: "+query+" And here are the relevant pages of the manual you need to read and pull from to answer the question - make sure to include the page numbers of all the pages given: "+relevant_pages}
-            ]
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        logging.error(f"Error generating response: {e}")
-        return ""
-    
-
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant who can answer a military training question based only on the provided text."},
+            {"role": "user", "content": "here is the user's question that you need to answer: "+query+" And here are the relevant pages of the manual you need to read and pull from to answer the question - make sure to include the page numbers of all the pages given: "+relevant_pages}
+        ]
+    )
+    # return response.choices[0].message['content']
+    return response.choices[0].message.content
 
 
 
