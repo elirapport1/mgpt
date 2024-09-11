@@ -76,7 +76,7 @@ def describe_image(base_64_image):
     - str: The generated description of the image.
     """
     response = client.chat.completions.create(
-    model="gpt-4o",
+    model="gpt-4o-mini",
     messages=[
         {
         "role": "user",
@@ -91,7 +91,7 @@ def describe_image(base_64_image):
         ],
         }
     ],
-    max_tokens=500,
+    max_tokens=600,
     )
 
     return response.choices[0].message.content
